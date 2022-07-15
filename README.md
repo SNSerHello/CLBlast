@@ -40,7 +40,33 @@ cmake -DTUNERS=ON ..
 ./clblast_sample_sgemm_c
 ```
 
+## 未实现的CLBLAS函数
 
+### 非CUDA版本
+
+- BLAS level-1 (vector-vector)
+  - SROTG/DROTG
+  - SROTMG/DROTMG
+  - SROT/DROT
+  - SROTM/DROTM
+- BLAS level-2 (matrix-vector)
+  - STBSV/DTBSV/CTBSV/ZTBSV
+  - STPSV/DTPSV/CTPSV/ZTPSV
+- BLAS level-3 (matrix-matrix)
+  - None
+
+### CUDA版本
+
+- BLAS level-1 (vector-vector)
+  - SROTG/DROTG
+  - SROTMG/DROTMG
+  - SROT/DROT
+  - SROTM/DROTM
+- BLAS level-2 (matrix-vector)
+  - STBSV/DTBSV/CTBSV/ZTBSV
+  - STPSV/DTPSV/CTPSV/ZTPSV
+- BLAS level-3 (matrix-matrix)
+  - None
 
 ### 参考
 
