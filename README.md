@@ -3,6 +3,8 @@ CLBlast: The tuned OpenCL BLAS library
 
 ## Ubuntu20.04LTS
 
+### 编译并优化CLBlast
+
 ```bash
 sudo apt install clinfo
 clinfo -l # 获取Platform与Device信息
@@ -20,6 +22,25 @@ python ../scripts/database/database.py -v . ..
 # 使用新数据编译CLBlast
 make
 ```
+
+### 编译并运行测试程序
+
+```
+cmake -DSAMPLES=ON ..
+make
+cmake -DTUNERS=ON ..
+./clblast_sample_cache_c
+./clblast_sample_dgemv_c
+./clblast_sample_dtrsm
+./clblast_sample_haxpy_c # 部分设备可能不支持半精度（错误代码：-2045）
+./clblast_sample_samax_c
+./clblast_sample_sasum_c
+./clblast_sample_sgemm
+./clblast_sample_sgemm_batched
+./clblast_sample_sgemm_c
+```
+
+
 
 ### 参考
 
