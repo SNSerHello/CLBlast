@@ -73,6 +73,7 @@ cmake -DTUNERS=ON ..
 - [Performance results for Titan X (Pascal)](https://cnugteren.github.io/clblast/results/titanxpascal.html)
 - [CLBlast: API reference](https://github.com/SNSerHello/CLBlast/blob/master/doc/api.md)
 - [Tutorial: OpenCL SGEMM tuning for Kepler](https://cnugteren.github.io/tutorial/pages/page1.html)
+- [BLAS Routines](https://oneapi-src.github.io/oneMKL/domains/blas/blas.html)
 
 
 
