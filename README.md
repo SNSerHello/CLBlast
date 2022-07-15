@@ -1,6 +1,33 @@
-
 CLBlast: The tuned OpenCL BLAS library
 ================
+
+## Ubuntu20.04LTS
+
+```bash
+sudo apt install clinfo
+clinfo -l # 获取Platform与Device信息
+git clone --recursive https://github.com/SNSerHello/CLBlast.git
+cd CLBlast
+# 使用老数据编译CLBlast
+# 老数据下载地址为： https://raw.githubusercontent.com/CNugteren/CLBlast-database/master/database.json
+mkdir build
+cd build
+cmake -DTUNERS=ON ..
+make
+# Finetuning kernel
+make alltuners
+python ../scripts/database/database.py -v . ..
+# 使用新数据编译CLBlast
+make
+```
+
+### 参考
+
+- [Performance results for Titan X (Pascal)](https://cnugteren.github.io/clblast/results/titanxpascal.html)
+- [CLBlast: API reference](https://github.com/SNSerHello/CLBlast/blob/master/doc/api.md)
+- [Tutorial: OpenCL SGEMM tuning for Kepler](https://cnugteren.github.io/tutorial/pages/page1.html)
+
+
 
 | Platform | Build status |
 |-----|-----|
