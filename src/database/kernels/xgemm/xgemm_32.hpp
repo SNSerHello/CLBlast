@@ -182,6 +182,10 @@ const DatabaseEntry XgemmSingle = {
           { Name{"A100-PCIE-40GB                                    "}, Params{ 0, 1, 32, 2, 8, 8, 32, 16, 16, 64, 1, 1, 0, 0, 4, 4 } },
           { kDeviceNameDefault                                        , Params{ 0, 1, 32, 2, 8, 8, 32, 16, 16, 64, 1, 1, 0, 0, 4, 4 } },
         } },
+        { "SM8.6", {
+          { Name{"NVIDIA GeForce RTX 3070                           "}, Params{ 0, 1, 32, 2, 8, 8, 32, 8, 16, 128, 1, 1, 0, 1, 4, 4 } },
+          { kDeviceNameDefault                                        , Params{ 0, 1, 32, 2, 8, 8, 32, 8, 16, 128, 1, 1, 0, 1, 4, 4 } },
+        } },
         { "default", {
           { kDeviceNameDefault                                        , Params{ 0, 1, 32, 2, 16, 16, 64, 16, 16, 64, 1, 1, 0, 0, 4, 4 } },
         } },
