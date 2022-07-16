@@ -363,6 +363,21 @@ x------x-------x------x-----------------x-----------------x----------------x----
 ../dist/bin/clblast_tuner_routine_xtrsv -precision 16
 ```
 
+### 编译CLBlast静态库
+
+```bash
+cmake -DCLIENTS=ON \
+	-DTESTS=ON \
+	-DMKL_INCLUDE_DIRS=/usr/include/mkl \
+	-DCUBLAS=ON \
+	-DCUDA_ROOT=$CONDA_PREFIX \
+	-DCMAKE_CXX_FLAGS=-I$CONDA_PREFIX/include \
+	-DCMAKE_INSTALL_PREFIX=../dist \
+	-DBUILD_SHARED_LIBS=OFF ..
+make -j
+make install
+```
+
 ## 未实现的CLBLAS函数
 
 ### 非CUDA版本
