@@ -111,6 +111,8 @@ python3 ../scripts/benchmark/benchmark_all.py \
 
 
 
+## CLBlast Build Status
+
 | Platform | Build status |
 |-----|-----|
 | Windows | [![Build Status](https://ci.appveyor.com/api/projects/status/github/cnugteren/clblast?branch=master&svg=true)](https://ci.appveyor.com/project/CNugteren/clblast) |
