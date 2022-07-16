@@ -106,6 +106,7 @@ python3 ../scripts/benchmark/benchmark_all.py \
 - [CLBlast: API reference](https://github.com/SNSerHello/CLBlast/blob/master/doc/api.md)
 - [Tutorial: OpenCL SGEMM tuning for Kepler](https://cnugteren.github.io/tutorial/pages/page1.html)
 - [BLAS Routines](https://oneapi-src.github.io/oneMKL/domains/blas/blas.html)
+- [Anaconda3](https://github.com/SNSerHello/MyNotes/tree/main/anaconda3)
 
 
 
