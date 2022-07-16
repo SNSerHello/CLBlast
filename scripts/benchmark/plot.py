@@ -18,7 +18,7 @@ REDISH = [c / 255.0 for c in [214, 117, 104]]  # #d67568
 PURPLISH = [c / 255.0 for c in [85, 0, 119]]  # #550077
 GREEN = [c / 255.0 for c in [144, 224, 98]] # #90e062
 COLORS = [BLUEISH, REDISH, PURPLISH, GREEN]
-MARKERS = ["o-", "x-", ".-"]
+MARKERS = ["o-", "x-", ".-", "*"]
 
 
 def plot_graphs(results, file_name, num_rows, num_cols,
@@ -76,7 +76,7 @@ def plot_graphs(results, file_name, num_rows, num_cols,
         for col in range(num_cols):
             index = row * num_cols + col
             result = results[index]
-            ax = axes[row, col]
+            ax = axes[row, col] if len(axes.shape) > 1 else axes[index]
             plt.sca(ax)
             print("[plot] Plotting subplot %d" % index)
 
@@ -91,7 +91,16 @@ def plot_graphs(results, file_name, num_rows, num_cols,
 
             # Sets the y-data
             y_list = [[r[y_key] if y_key in r.keys() else 0 for r in result] for y_key in y_keys[index]]
-            y_max = [max(y) if len(y) else 1 for y in y_list]
+            try:
+                y_max = [max(y) if len(y) else 1 for y in y_list]
+            except:
+                y_max = []
+                for y in y_list:
+                    if len(y) > 0:
+                        y = np.asarray(y, dtype=np.float32)
+                        y_max.append(float(max(y[y!=np.inf])))
+                    else:
+                        y_max.append(1.0)
             y_max = max(y_max) if len(y_list) > 0 else 1
 
             # Sets the axes
@@ -113,7 +122,7 @@ def plot_graphs(results, file_name, num_rows, num_cols,
             assert len(label_names) == len(y_keys[index])
             for i in range(len(y_keys[index])):
                 color = COLORS[i]
-                marker = MARKERS[i]
+                marker = MARKERS[i % len(MARKERS)]
                 if label_names[i] in ["CLBlast", "CLBlast FP32"]:
                     color = BLUEISH
                     marker = "o-"
