@@ -147,7 +147,8 @@ def benchmark_single(benchmark, comparisons, platform, device, num_runs, precisi
 
     # Retrieves the data from the benchmark settings
     file_name_suffix = "_tight" if tight_plot else ""
-    pdf_file_name = os.path.join(output_folder, benchmark_name.lower() + "_plot" + file_name_suffix + ".pdf")
+    # pdf_file_name = os.path.join(output_folder, benchmark_name.lower() + "_plot" + file_name_suffix + ".pdf")
+    pdf_file_name = os.path.join(output_folder, benchmark_name.lower() + "_plot" + file_name_suffix + ".jpg")
     titles = [b["title"] if "BATCHED" in b["name"].upper() else
               utils.precision_to_letter(precision) + b["name"].upper() + " " + b["title"]
               for b in benchmarks]
