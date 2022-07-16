@@ -25,7 +25,7 @@ make
 
 ### 编译并运行测试程序
 
-```
+```bash
 cmake -DSAMPLES=ON ..
 make
 cmake -DTUNERS=ON ..
@@ -39,6 +39,28 @@ cmake -DTUNERS=ON ..
 ./clblast_sample_sgemm_batched
 ./clblast_sample_sgemm_c
 ```
+
+### Benchmarking
+
+```bash
+cmake -DCLIENTS=ON -DTESTS=ON -DMKL_INCLUDE_DIRS=/usr/include/mkl -DCUBLAS=ON -DCUDA_ROOT=$CONDA_PREFIX -DCMAKE_CXX_FLAGS=-I$CONDA_PREFIX/include ..
+make -j
+python3 ../scripts/benchmark/benchmark_all.py --comparisons clBLAS CPU-BLAS cuBLAS  --platform 0 --device 0
+```
+
+**注意**：如果没有CUDA或者MKL安装，那么在命令行中删除对应部分即可。
+
+#### 部分运行结果
+
+![sgemv](images/sgemv_plot.jpg)
+
+![sgemm](images/sgemm_plot.jpg)
+
+![sgemmbatched](images/sgemmbatched_plot.jpg)
+
+![sgemmstridedbatched](images/sgemmstridedbatched_plot.jpg)
+
+![ssummary](images/ssummary_plot.jpg)
 
 ## 未实现的CLBLAS函数
 
