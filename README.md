@@ -42,10 +42,20 @@ cmake -DTUNERS=ON ..
 
 ### Benchmarking
 
+命令行中使用的是Anaconda3的环境变量，搭建Anaconda3环境请参考：[搭建Anaconda3环境](https://github.com/SNSerHello/MyNotes/tree/main/anaconda3)，其他的环境请修改相应的路径参数。
+
 ```bash
-cmake -DCLIENTS=ON -DTESTS=ON -DMKL_INCLUDE_DIRS=/usr/include/mkl -DCUBLAS=ON -DCUDA_ROOT=$CONDA_PREFIX -DCMAKE_CXX_FLAGS=-I$CONDA_PREFIX/include ..
+cmake -DCLIENTS=ON \
+	-DTESTS=ON \
+	-DMKL_INCLUDE_DIRS=/usr/include/mkl \
+	-DCUBLAS=ON \
+	-DCUDA_ROOT=$CONDA_PREFIX \
+	-DCMAKE_CXX_FLAGS=-I$CONDA_PREFIX/include ..
 make -j
-python3 ../scripts/benchmark/benchmark_all.py --comparisons clBLAS CPU-BLAS cuBLAS  --platform 0 --device 0
+python3 ../scripts/benchmark/benchmark_all.py \
+	--comparisons clBLAS CPU-BLAS cuBLAS  \
+	--platform 0 \
+	--device 0
 ```
 
 **注意**：如果没有CUDA或者MKL安装，那么在命令行中删除对应部分即可。
