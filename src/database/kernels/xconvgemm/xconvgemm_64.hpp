@@ -57,8 +57,8 @@ const DatabaseEntry XconvgemmDouble = {
           { kDeviceNameDefault                                        , Params{ 1, 32, 32, 32, 8, 0, 0, 1, 1, 32, 0, 0, 0, 0, 0, 0 } },
         } },
         { "SM8.6", {
-          { Name{"NVIDIA GeForce RTX 3070                           "}, Params{ 1, 8, 16, 32, 8, 0, 0, 2, 1, 32, 0, 0, 0, 0, 0, 0 } },
-          { kDeviceNameDefault                                        , Params{ 1, 8, 16, 32, 8, 0, 0, 2, 1, 32, 0, 0, 0, 0, 0, 0 } },
+          { Name{"NVIDIA GeForce RTX 3090 Ti                        "}, Params{ 1, 8, 8, 8, 8, 0, 0, 1, 1, 16, 0, 0, 0, 0, 0, 0 } },
+          { kDeviceNameDefault                                        , Params{ 1, 8, 8, 8, 8, 0, 0, 1, 1, 16, 0, 0, 0, 0, 0, 0 } },
         } },
         { "default", {
           { kDeviceNameDefault                                        , Params{ 1, 32, 32, 32, 8, 0, 0, 1, 1, 32, 0, 0, 0, 0, 0, 0 } },
