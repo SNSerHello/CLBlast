@@ -45,7 +45,7 @@ cmake -DTUNERS=ON ..
 命令行中使用的是Anaconda3的环境变量，搭建Anaconda3环境请参考：[搭建Anaconda3环境](https://github.com/SNSerHello/MyNotes/tree/main/anaconda3)，其他的环境请修改相应的路径参数。
 
 ```bash
-sudo apt install libmkl-full-dev
+sudo apt install libmkl-full-dev libclblas-dev
 cmake -DCLIENTS=ON \
 	-DTESTS=ON \
 	-DMKL_INCLUDE_DIRS=/usr/include/mkl \
