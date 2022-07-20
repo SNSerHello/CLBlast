@@ -63,15 +63,17 @@ python3 ../scripts/benchmark/benchmark_all.py \
 
 #### 部分运行结果
 
-![sgemv](images/sgemv_plot.jpg)
+##### NVIDIA 3070平台
 
-![sgemm](images/sgemm_plot.jpg)
+![NV3070 sgemv](images/nv3070_sgemv_plot.jpg)
 
-![sgemmbatched](images/sgemmbatched_plot.jpg)
+![NV3070 sgemm](images/nv3070_sgemm_plot.jpg)
 
-![sgemmstridedbatched](images/sgemmstridedbatched_plot.jpg)
+![NV3070 sgemmbatched](images/nv3070_sgemmbatched_plot.jpg)
 
-![ssummary](images/ssummary_plot.jpg)
+![NV3070 sgemmstridedbatched](images/nv3070_sgemmstridedbatched_plot.jpg)
+
+![NV3070 ssummary](images/nv3070_ssummary_plot.jpg)
 
 ### 制定安装目录
 
