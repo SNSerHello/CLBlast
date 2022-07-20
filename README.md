@@ -75,6 +75,20 @@ python3 ../scripts/benchmark/benchmark_all.py \
 
 ![NV3070 ssummary](images/nv3070_ssummary_plot.jpg)
 
+##### NVIDIA 3090TI平台
+
+![NV3090 sgemv](images/nv3090_sgemv_plot.jpg)
+
+![NV3090 sgemm](images/nv3090_sgemm_plot.jpg)
+
+![NV3090 sgemmbatched](images/nv3090_sgemmbatched_plot.jpg)
+
+![NV3090 sgemmstridedbatched](images/nv3090_sgemmstridedbatched_plot.jpg)
+
+![NV3090 ssummary](images/nv3090_ssummary_plot.jpg)
+
+![NV3090 saxpybatched](images/nv3090_saxpybatched_plot.jpg)
+
 ### 制定安装目录
 
 将运行文件、头文件和库文件安装到dist目录下
