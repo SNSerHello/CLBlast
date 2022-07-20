@@ -91,16 +91,16 @@ def plot_graphs(results, file_name, num_rows, num_cols,
 
             # Sets the y-data
             y_list = [[r[y_key] if y_key in r.keys() else 0 for r in result] for y_key in y_keys[index]]
-            try:
-                y_max = [max(y) if len(y) else 1 for y in y_list]
-            except:
-                y_max = []
-                for y in y_list:
-                    if len(y) > 0:
-                        y = np.asarray(y, dtype=np.float32)
-                        y_max.append(float(max(y[y!=np.inf])))
-                    else:
-                        y_max.append(1.0)
+
+            # y_max = [max(y) if len(y) else 1 for y in y_list]
+            y_max = []
+            for y in y_list:
+                if len(y) > 0:
+                    y = np.asarray(y, dtype=np.float32)
+                    y = y[y!=np.inf]
+                    y_max.append(float(max(y) if len(y) > 0 else 1.0))
+                else:
+                    y_max.append(1.0)
             y_max = max(y_max) if len(y_list) > 0 else 1
 
             # Sets the axes
