@@ -75,6 +75,10 @@ python3 ../scripts/benchmark/benchmark_all.py \
 
 ![NV3070 ssummary](images/nv3070_ssummary_plot.jpg)
 
+![NV3070 saxpybatched](images/nv3070_saxpy_plot.jpg)
+
+![NV3070 saxpybatched](images/nv3070_saxpybatched_plot.jpg)
+
 ##### NVIDIA 3090TI平台
 
 ![NV3090 sgemv](images/nv3090_sgemv_plot.jpg)
