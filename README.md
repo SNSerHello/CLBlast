@@ -91,6 +91,8 @@ python3 ../scripts/benchmark/benchmark_all.py \
 
 ![NV3090 ssummary](images/nv3090_ssummary_plot.jpg)
 
+![NV3090 saxpybatched](images/nv3090_saxpy_plot.jpg)
+
 ![NV3090 saxpybatched](images/nv3090_saxpybatched_plot.jpg)
 
 ### 制定安装目录
