@@ -14,13 +14,14 @@ cd CLBlast
 # 老数据下载地址为： https://raw.githubusercontent.com/CNugteren/CLBlast-database/master/database.json
 mkdir build
 cd build
-cmake -DTUNERS=ON ..
+cmake .. -DTUNERS=ON -DCMAKE_INSTALL_PREFIX=./dist/clblast
 make
 # Finetuning kernel
 make alltuners
 python ../scripts/database/database.py -v . ..
 # 使用新数据编译CLBlast
 make
+make install
 ```
 
 ### 编译并运行测试程序
