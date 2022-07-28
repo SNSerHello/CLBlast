@@ -1,6 +1,20 @@
 CLBlast: The tuned OpenCL BLAS library
 ================
 
+## Windows
+
+```bash
+mkdir build
+cd build
+cmake -G "Visual Studio 15 2017 Win64" -DTUNERS=ON -DCMAKE_INSTALL_PREFIX=./dist/clblast ..
+%comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 clblast.vcxproj
+msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 alltuners.vcxproj
+python ../scripts/database/database.py -v . ..
+msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 clblast.vcxproj
+msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 INSTALL.vcxproj
+```
+
 ## Ubuntu20.04LTS
 
 ### 编译并优化CLBlast
