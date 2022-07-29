@@ -34,7 +34,10 @@ COMPARISON_IDS = [2, 3, 4]
 
 
 def run_benchmark(name, arguments_list, precision, num_runs, platform, device, comparisons):
-    binary = "./clblast_client_x" + name
+    if os.sys.platform == "win32":
+        binary = r".\Release\clblast_client_x" + name
+    else:
+        binary = "./clblast_client_x" + name
 
     # Loops over sub-benchmarks per benchmark
     results = []
