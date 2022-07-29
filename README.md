@@ -6,7 +6,7 @@ CLBlast: The tuned OpenCL BLAS library
 ```bash
 mkdir build
 cd build
-cmake -G "Visual Studio 15 2017 Win64" -DTUNERS=ON -DCMAKE_INSTALL_PREFIX=./dist/clblast ..
+cmake -G "Visual Studio 15 2017 Win64" -DTUNERS=ON -DCMAKE_INSTALL_PREFIX=../dist/clblast ..
 %comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 clblast.vcxproj
 msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 alltuners.vcxproj
@@ -28,7 +28,7 @@ cd CLBlast
 # 老数据下载地址为： https://raw.githubusercontent.com/CNugteren/CLBlast-database/master/database.json
 mkdir build
 cd build
-cmake .. -DTUNERS=ON -DCMAKE_INSTALL_PREFIX=./dist/clblast
+cmake .. -DTUNERS=ON -DCMAKE_INSTALL_PREFIX=../dist/clblast
 make
 # Finetuning kernel
 make alltuners
@@ -121,7 +121,7 @@ cmake -DCLIENTS=ON \
 	-DCUBLAS=ON \
 	-DCUDA_ROOT=$CONDA_PREFIX \
 	-DCMAKE_CXX_FLAGS=-I$CONDA_PREFIX/include \
-	-DCMAKE_INSTALL_PREFIX=../dist ..
+	-DCMAKE_INSTALL_PREFIX=../dist/clblast ..
 make -j
 make install
 ```
@@ -129,7 +129,7 @@ make install
 #### 安装内容
 
 ```bash
-dist
+dist/clblast
 ├── bin
 │   ├── clblast_client_xamax
 │   ├── clblast_client_xasum
@@ -264,7 +264,7 @@ dist
 可以使用这些安装的可执行文件进行finetuning操作，比如
 
 ```bash
-$ ../dist/bin/clblast_tuner_xdot -precision 32
+$ ../dist/clblast/bin/clblast_tuner_xdot -precision 32
 * Options given/available:
     -platform 0 [=default]
     -device 0 [=default]
@@ -333,71 +333,71 @@ x------x-------x------x-----------------x-----------------x----------------x----
 罗列可能存在的Finetuning操作
 
 ```bash
-../dist/bin/clblast_tuner_copy_fast -precision 32
-../dist/bin/clblast_tuner_copy_fast -precision 64
-../dist/bin/clblast_tuner_copy_fast -precision 3232
-../dist/bin/clblast_tuner_copy_fast -precision 6464
-../dist/bin/clblast_tuner_copy_fast -precision 16
-../dist/bin/clblast_tuner_copy_pad -precision 32
-../dist/bin/clblast_tuner_copy_pad -precision 64
-../dist/bin/clblast_tuner_copy_pad -precision 3232
-../dist/bin/clblast_tuner_copy_pad -precision 6464
-../dist/bin/clblast_tuner_copy_pad -precision 16
-../dist/bin/clblast_tuner_transpose_fast -precision 32
-../dist/bin/clblast_tuner_transpose_fast -precision 64
-../dist/bin/clblast_tuner_transpose_fast -precision 3232
-../dist/bin/clblast_tuner_transpose_fast -precision 6464
-../dist/bin/clblast_tuner_transpose_fast -precision 16
-../dist/bin/clblast_tuner_transpose_pad -precision 32
-../dist/bin/clblast_tuner_transpose_pad -precision 64
-../dist/bin/clblast_tuner_transpose_pad -precision 3232
-../dist/bin/clblast_tuner_transpose_pad -precision 6464
-../dist/bin/clblast_tuner_transpose_pad -precision 16
-../dist/bin/clblast_tuner_xaxpy -precision 32
-../dist/bin/clblast_tuner_xaxpy -precision 64
-../dist/bin/clblast_tuner_xaxpy -precision 3232
-../dist/bin/clblast_tuner_xaxpy -precision 6464
-../dist/bin/clblast_tuner_xaxpy -precision 16
-../dist/bin/clblast_tuner_xdot -precision 32
-../dist/bin/clblast_tuner_xdot -precision 64
-../dist/bin/clblast_tuner_xdot -precision 3232
-../dist/bin/clblast_tuner_xdot -precision 6464
-../dist/bin/clblast_tuner_xdot -precision 16
-../dist/bin/clblast_tuner_xger -precision 32
-../dist/bin/clblast_tuner_xger -precision 64
-../dist/bin/clblast_tuner_xger -precision 3232
-../dist/bin/clblast_tuner_xger -precision 6464
-../dist/bin/clblast_tuner_xger -precision 16
-../dist/bin/clblast_tuner_xgemm -precision 32
-../dist/bin/clblast_tuner_xgemm -precision 64
-../dist/bin/clblast_tuner_xgemm -precision 3232
-../dist/bin/clblast_tuner_xgemm -precision 6464
-../dist/bin/clblast_tuner_xgemm -precision 16
-../dist/bin/clblast_tuner_xgemm_direct -precision 32
-../dist/bin/clblast_tuner_xgemm_direct -precision 64
-../dist/bin/clblast_tuner_xgemm_direct -precision 3232
-../dist/bin/clblast_tuner_xgemm_direct -precision 6464
-../dist/bin/clblast_tuner_xgemm_direct -precision 16
-../dist/bin/clblast_tuner_xgemv -precision 32
-../dist/bin/clblast_tuner_xgemv -precision 64
-../dist/bin/clblast_tuner_xgemv -precision 3232
-../dist/bin/clblast_tuner_xgemv -precision 6464
-../dist/bin/clblast_tuner_xgemv -precision 16
-../dist/bin/clblast_tuner_invert -precision 32
-../dist/bin/clblast_tuner_invert -precision 64
-../dist/bin/clblast_tuner_invert -precision 3232
-../dist/bin/clblast_tuner_invert -precision 6464
-../dist/bin/clblast_tuner_invert -precision 16
-../dist/bin/clblast_tuner_routine_xgemm -precision 32
-../dist/bin/clblast_tuner_routine_xgemm -precision 64
-../dist/bin/clblast_tuner_routine_xgemm -precision 3232
-../dist/bin/clblast_tuner_routine_xgemm -precision 6464
-../dist/bin/clblast_tuner_routine_xgemm -precision 16
-../dist/bin/clblast_tuner_routine_xtrsv -precision 32
-../dist/bin/clblast_tuner_routine_xtrsv -precision 64
-../dist/bin/clblast_tuner_routine_xtrsv -precision 3232
-../dist/bin/clblast_tuner_routine_xtrsv -precision 6464
-../dist/bin/clblast_tuner_routine_xtrsv -precision 16
+../dist/clblast/bin/clblast_tuner_copy_fast -precision 32
+../dist/clblast/bin/clblast_tuner_copy_fast -precision 64
+../dist/clblast/bin/clblast_tuner_copy_fast -precision 3232
+../dist/clblast/bin/clblast_tuner_copy_fast -precision 6464
+../dist/clblast/bin/clblast_tuner_copy_fast -precision 16
+../dist/clblast/bin/clblast_tuner_copy_pad -precision 32
+../dist/clblast/bin/clblast_tuner_copy_pad -precision 64
+../dist/clblast/bin/clblast_tuner_copy_pad -precision 3232
+../dist/clblast/bin/clblast_tuner_copy_pad -precision 6464
+../dist/clblast/bin/clblast_tuner_copy_pad -precision 16
+../dist/clblast/bin/clblast_tuner_transpose_fast -precision 32
+../dist/clblast/bin/clblast_tuner_transpose_fast -precision 64
+../dist/clblast/bin/clblast_tuner_transpose_fast -precision 3232
+../dist/clblast/bin/clblast_tuner_transpose_fast -precision 6464
+../dist/clblast/bin/clblast_tuner_transpose_fast -precision 16
+../dist/clblast/bin/clblast_tuner_transpose_pad -precision 32
+../dist/clblast/bin/clblast_tuner_transpose_pad -precision 64
+../dist/clblast/bin/clblast_tuner_transpose_pad -precision 3232
+../dist/clblast/bin/clblast_tuner_transpose_pad -precision 6464
+../dist/clblast/bin/clblast_tuner_transpose_pad -precision 16
+../dist/clblast/bin/clblast_tuner_xaxpy -precision 32
+../dist/clblast/bin/clblast_tuner_xaxpy -precision 64
+../dist/clblast/bin/clblast_tuner_xaxpy -precision 3232
+../dist/clblast/bin/clblast_tuner_xaxpy -precision 6464
+../dist/clblast/bin/clblast_tuner_xaxpy -precision 16
+../dist/clblast/bin/clblast_tuner_xdot -precision 32
+../dist/clblast/bin/clblast_tuner_xdot -precision 64
+../dist/clblast/bin/clblast_tuner_xdot -precision 3232
+../dist/clblast/bin/clblast_tuner_xdot -precision 6464
+../dist/clblast/bin/clblast_tuner_xdot -precision 16
+../dist/clblast/bin/clblast_tuner_xger -precision 32
+../dist/clblast/bin/clblast_tuner_xger -precision 64
+../dist/clblast/bin/clblast_tuner_xger -precision 3232
+../dist/clblast/bin/clblast_tuner_xger -precision 6464
+../dist/clblast/bin/clblast_tuner_xger -precision 16
+../dist/clblast/bin/clblast_tuner_xgemm -precision 32
+../dist/clblast/bin/clblast_tuner_xgemm -precision 64
+../dist/clblast/bin/clblast_tuner_xgemm -precision 3232
+../dist/clblast/bin/clblast_tuner_xgemm -precision 6464
+../dist/clblast/bin/clblast_tuner_xgemm -precision 16
+../dist/clblast/bin/clblast_tuner_xgemm_direct -precision 32
+../dist/clblast/bin/clblast_tuner_xgemm_direct -precision 64
+../dist/clblast/bin/clblast_tuner_xgemm_direct -precision 3232
+../dist/clblast/bin/clblast_tuner_xgemm_direct -precision 6464
+../dist/clblast/bin/clblast_tuner_xgemm_direct -precision 16
+../dist/clblast/bin/clblast_tuner_xgemv -precision 32
+../dist/clblast/bin/clblast_tuner_xgemv -precision 64
+../dist/clblast/bin/clblast_tuner_xgemv -precision 3232
+../dist/clblast/bin/clblast_tuner_xgemv -precision 6464
+../dist/clblast/bin/clblast_tuner_xgemv -precision 16
+../dist/clblast/bin/clblast_tuner_invert -precision 32
+../dist/clblast/bin/clblast_tuner_invert -precision 64
+../dist/clblast/bin/clblast_tuner_invert -precision 3232
+../dist/clblast/bin/clblast_tuner_invert -precision 6464
+../dist/clblast/bin/clblast_tuner_invert -precision 16
+../dist/clblast/bin/clblast_tuner_routine_xgemm -precision 32
+../dist/clblast/bin/clblast_tuner_routine_xgemm -precision 64
+../dist/clblast/bin/clblast_tuner_routine_xgemm -precision 3232
+../dist/clblast/bin/clblast_tuner_routine_xgemm -precision 6464
+../dist/clblast/bin/clblast_tuner_routine_xgemm -precision 16
+../dist/clblast/bin/clblast_tuner_routine_xtrsv -precision 32
+../dist/clblast/bin/clblast_tuner_routine_xtrsv -precision 64
+../dist/clblast/bin/clblast_tuner_routine_xtrsv -precision 3232
+../dist/clblast/bin/clblast_tuner_routine_xtrsv -precision 6464
+../dist/clblast/bin/clblast_tuner_routine_xtrsv -precision 16
 ```
 
 ### 编译CLBlast静态库
@@ -409,7 +409,7 @@ cmake -DCLIENTS=ON \
 	-DCUBLAS=ON \
 	-DCUDA_ROOT=$CONDA_PREFIX \
 	-DCMAKE_CXX_FLAGS=-I$CONDA_PREFIX/include \
-	-DCMAKE_INSTALL_PREFIX=../dist \
+	-DCMAKE_INSTALL_PREFIX=../dist/clblast \
 	-DBUILD_SHARED_LIBS=OFF ..
 make -j
 make install
