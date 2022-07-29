@@ -57,6 +57,8 @@ cmake -DTUNERS=ON ..
 
 ### Benchmarking
 
+#### Ubuntu 20.04LTS
+
 命令行中使用的是Anaconda3的环境变量，搭建Anaconda3环境请参考：[搭建Anaconda3环境](https://github.com/SNSerHello/MyNotes/tree/main/anaconda3)，其他的环境请修改相应的路径参数。
 
 ```bash
@@ -75,6 +77,22 @@ python3 ../scripts/benchmark/benchmark_all.py \
 ```
 
 **注意**：如果没有CUDA或者MKL安装，那么在命令行中删除对应部分即可。
+
+#### Windows
+
+```bash
+cmake -G "Visual Studio 15 2017 Win64" ^
+	-DCLIENTS=ON ^
+	-DTESTS=ON ^
+	-DCUBLAS=ON ^
+	-DCUDA_ROOT=%CONDA_PREFIX% ^
+	-DCMAKE_CXX_FLAGS="-I%CONDA_PREFIX%/include -I%CLBLAS_ROOT%/include" ..
+%comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 ALL_BUILD.vcxproj
+python3 ../scripts/benchmark/benchmark_all.py --comparisons clBLAS CPU-BLAS cuBLAS --platform 0 --device 0
+```
+
+
 
 #### 部分运行结果
 
