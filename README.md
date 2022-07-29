@@ -95,7 +95,7 @@ msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64
 python3 ../scripts/benchmark/benchmark_all.py --comparisons clBLAS CPU-BLAS cuBLAS --platform 0 --device 0
 ```
 
-CBLAS的编译在Windows下比较麻烦，它包含在lapack中，需要fortran编译器，为了省去`mingw`环境的搭建，预编译的库可以从[LAPACK for Windows](https://icl.utk.edu/lapack-for-windows/lapack/index.html#libraries)下载，头文件则从[lapack/CBLAS/include](https://github.com/SNSerHello/lapack/tree/master/CBLAS/include)，组成的目录结构如下所示
+CBLAS的编译在Windows下比较麻烦，它包含在lapack中，需要fortran编译器，为了省去`mingw`环境的搭建，预编译的库可以从[LAPACK for Windows](https://icl.utk.edu/lapack-for-windows/lapack/index.html#libraries)下载，头文件则从[lapack/CBLAS/include](https://github.com/SNSerHello/lapack/tree/master/CBLAS/include)目录中拷贝，组成的目录结构如下所示
 
 ```bash
 cblas
