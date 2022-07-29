@@ -96,7 +96,7 @@ python3 ../scripts/benchmark/benchmark_all.py --comparisons clBLAS CPU-BLAS cuBL
 
 #### 部分运行结果
 
-##### NVIDIA 3070平台
+##### NVIDIA 3070平台 in Ubuntu20.04LTS
 
 ![NV3070 sgemv](images/nv3070_sgemv_plot.jpg)
 
@@ -112,7 +112,7 @@ python3 ../scripts/benchmark/benchmark_all.py --comparisons clBLAS CPU-BLAS cuBL
 
 ![NV3070 saxpybatched](images/nv3070_saxpybatched_plot.jpg)
 
-##### NVIDIA 3090TI平台
+##### NVIDIA 3090TI平台 in Ubuntu20.04LTS
 
 ![NV3090 sgemv](images/nv3090_sgemv_plot.jpg)
 
