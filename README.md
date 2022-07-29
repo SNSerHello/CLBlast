@@ -86,11 +86,51 @@ cmake -G "Visual Studio 15 2017 Win64" ^
 	-DTESTS=ON ^
 	-DCUBLAS=ON ^
 	-DCUDA_ROOT=%CONDA_PREFIX% ^
-	-DCMAKE_CXX_FLAGS="-I%CONDA_PREFIX%/include -I%CLBLAS_ROOT%/include" ..
+	-DCBLAS_INCLUDE_DIRS=%CBLAS_ROOT% ^
+	-DCBLAS_ROOT=%CBLAS_ROOT% ^
+	-DCBLAS_LIBRARIES=%CBLAS_ROOT%/lib/libblas.lib ^
+	-DCMAKE_CXX_FLAGS="-I%CONDA_PREFIX%/include -I%CLBLAS_ROOT%/include -I%CBLAS_ROOT%/include" ..
 %comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 ALL_BUILD.vcxproj
 python3 ../scripts/benchmark/benchmark_all.py --comparisons clBLAS CPU-BLAS cuBLAS --platform 0 --device 0
 ```
+
+CBLAS的编译在Windows下比较麻烦，它包含在lapack中，需要fortran编译器，为了省去`mingw`环境的搭建，预编译的库可以从[LAPACK for Windows](https://icl.utk.edu/lapack-for-windows/lapack/index.html#libraries)下载，头文件则从[lapack/CBLAS/include](https://github.com/SNSerHello/lapack/tree/master/CBLAS/include)，组成的目录结构如下所示
+
+```bash
+cblas
++---bin
+|   |   libblas.dll
+|   |
+|   +---win32
+|   |       libblas.dll
+|   |
+|   \---x64
+|           libblas.dll
+|
++---include
+|       cblas.h
+|       cblas_f77.h
+|       cblas_mangling.h
+|
+\---lib
+    |   libblas.dll
+    |   libblas.lib
+    |
+    +---win32
+    |       libblas.dll
+    |       libblas.lib
+    |
+    \---x64
+            libblas.dll
+            libblas.lib
+```
+
+**其中**
+
+- `cblas_mangling.h`是修改`cblas_mangling_with_flags.h.in`的名字而获得的
+- `win32`文件夹中存放预编译的`x86`动态库，`x64`文件夹中存放预编译的`x64`动态库
+- `bin`与`lib`文件夹中放置当前使用的x86或者x64库，默认使用`x86`动态库
 
 
 
@@ -469,6 +509,8 @@ make install
 - [BLAS Routines](https://oneapi-src.github.io/oneMKL/domains/blas/blas.html)
 - [Anaconda3](https://github.com/SNSerHello/MyNotes/tree/main/anaconda3)
 - [MSBuild command-line reference](https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-command-line-reference?view=vs-2022)
+- [BLAS (Basic Linear Algebra Subprograms)](https://netlib.org/blas/)
+- [LAPACK for Windows](https://icl.utk.edu/lapack-for-windows/lapack/index.html#libraries)
 
 
 
