@@ -11,7 +11,7 @@ cmake -G "Visual Studio 15 2017 Win64" -DTUNERS=ON -DCMAKE_INSTALL_PREFIX=../dis
 msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 clblast.vcxproj
 msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 alltuners.vcxproj
 python ../scripts/database/database.py -v . ..
-msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 clblast.vcxproj
+msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 clblast.vcxproj -t:rebuild
 msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 INSTALL.vcxproj
 ```
 
@@ -450,6 +450,7 @@ make install
 - [Tutorial: OpenCL SGEMM tuning for Kepler](https://cnugteren.github.io/tutorial/pages/page1.html)
 - [BLAS Routines](https://oneapi-src.github.io/oneMKL/domains/blas/blas.html)
 - [Anaconda3](https://github.com/SNSerHello/MyNotes/tree/main/anaconda3)
+- [MSBuild command-line reference](https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-command-line-reference?view=vs-2022)
 
 
 
