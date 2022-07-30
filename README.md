@@ -88,7 +88,7 @@ cmake -G "Visual Studio 15 2017 Win64" ^
 	-DCUDA_ROOT=%CONDA_PREFIX% ^
 	-DCBLAS_INCLUDE_DIRS=%CBLAS_ROOT% ^
 	-DCBLAS_ROOT=%CBLAS_ROOT% ^
-	-DCBLAS_LIBRARIES=%CBLAS_ROOT%/lib/libcblas.dll ^
+	-DCBLAS_LIBRARIES=%CBLAS_ROOT%/lib/libcblas.lib ^
 	-DCMAKE_CXX_FLAGS="-I%CONDA_PREFIX%/include -I%CLBLAS_ROOT%/include -I%CBLAS_ROOT%/include" ..
 %comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 ALL_BUILD.vcxproj
@@ -99,31 +99,36 @@ CBLAS的编译在Windows下比较麻烦，它包含在lapack中，需要fortran�
 
 ```bash
 cblas
-+---bin
-|   |   libcblas.dll
-|   |
-|   +---win32
-|   \---x64
-|           libcblas.dll
-|
-+---include
-|       cblas.h
-|       cblas_f77.h
-|       cblas_mangling.h
-|
-\---lib
-    |   libcblas.dll
-    |
-    +---win32
-    \---x64
-            libcblas.dll
+├── bin
+│   ├── libcblas.dll
+│   ├── win32
+│   └── x64
+│       ├── libblas.dll
+│       ├── libcblas.dll
+│       ├── libgcc_s_seh-1.dll
+│       ├── libgfortran-5.dll
+│       ├── libquadmath-0.dll
+│       └── libwinpthread-1.dll
+├── include
+│   ├── cblas.h
+│   ├── cblas_f77.h
+│   └── cblas_mangling.h
+└── lib
+    ├── libcblas.exp
+    ├── libcblas.lib
+    ├── win32
+    └── x64
+        ├── libblas.exp
+        ├── libblas.lib
+        ├── libcblas.exp
+        └── libcblas.lib
 ```
 
 **其中**
 
 - `cblas_mangling.h`是修改`cblas_mangling_with_flags.h.in`的名字而获得的
 - `win32`文件夹中存放预编译的`x86`动态库，`x64`文件夹中存放预编译的`x64`动态库
-- `bin`与`lib`文件夹中放置当前使用的x86或者x64库，默认使用`x86`动态库
+- `bin`与`lib`文件夹中放置当前使用的x86或者x64库，默认使用`x64`动态库
 
 
 
@@ -504,6 +509,7 @@ make install
 - [MSBuild command-line reference](https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-command-line-reference?view=vs-2022)
 - [BLAS (Basic Linear Algebra Subprograms)](https://netlib.org/blas/)
 - [LAPACK for Windows](https://icl.utk.edu/lapack-for-windows/lapack/index.html#libraries)
+- [Creating an Import Library](https://gcc.gnu.org/onlinedocs/gnat_ugn/Creating-an-Import-Library.html)
 
 
 
