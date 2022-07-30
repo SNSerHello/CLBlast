@@ -88,7 +88,7 @@ cmake -G "Visual Studio 15 2017 Win64" ^
 	-DCUDA_ROOT=%CONDA_PREFIX% ^
 	-DCBLAS_INCLUDE_DIRS=%CBLAS_ROOT% ^
 	-DCBLAS_ROOT=%CBLAS_ROOT% ^
-	-DCBLAS_LIBRARIES=%CBLAS_ROOT%/lib/libblas.lib ^
+	-DCBLAS_LIBRARIES=%CBLAS_ROOT%/lib/libcblas.dll ^
 	-DCMAKE_CXX_FLAGS="-I%CONDA_PREFIX%/include -I%CLBLAS_ROOT%/include -I%CBLAS_ROOT%/include" ..
 %comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 ALL_BUILD.vcxproj
@@ -100,13 +100,11 @@ CBLAS的编译在Windows下比较麻烦，它包含在lapack中，需要fortran�
 ```bash
 cblas
 +---bin
-|   |   libblas.dll
+|   |   libcblas.dll
 |   |
 |   +---win32
-|   |       libblas.dll
-|   |
 |   \---x64
-|           libblas.dll
+|           libcblas.dll
 |
 +---include
 |       cblas.h
@@ -114,16 +112,11 @@ cblas
 |       cblas_mangling.h
 |
 \---lib
-    |   libblas.dll
-    |   libblas.lib
+    |   libcblas.dll
     |
     +---win32
-    |       libblas.dll
-    |       libblas.lib
-    |
     \---x64
-            libblas.dll
-            libblas.lib
+            libcblas.dll
 ```
 
 **其中**
