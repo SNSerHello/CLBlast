@@ -1,6 +1,42 @@
 CLBlast: The tuned OpenCL BLAS library
 ================
 
+默认情况下的超参调优无需进行任何设备和平台的制定，在程序中它们被设置为`device_id=0, platform_id=0`。在多个设备或者同一设备中有多个OpenCL平台的话，那么在进行`alltuners`之前，需要通过设置环境变量哪个设备或者平台需要被Finetuning，比如说
+
+**Ubuntu20.04LTS**
+
+```bash
+$ export CLBLAST_DEVICE=0
+$ export CLBLAST_PLATFORM=1
+```
+
+**Windows**
+
+```bash
+$ set CLBLAST_DEVICE=0
+$ set CLBLAST_PLATFORM=1
+```
+
+这两个环境变量的设定不会影响后面的benchmark的运行超参，因为在后继我们会明确指定使用哪个设备与平台，所以无需清理。在正常情况下，一旦我们使用了环境变量，那么在运行benchmark的时候，最好还是继续使用，作为一次完成的运行周期，比如说
+
+**Ubuntu20.04LTS**
+
+```bash
+$ python3 ../scripts/benchmark/benchmark_all.py --comparisons clBLAS CPU-BLAS cuBLAS --platform $CLBLAST_PLATFORM --device $CLBLAST_DEVICE
+```
+
+**Windows**
+
+```bash
+$ python3 ../scripts/benchmark/benchmark_all.py --comparisons clBLAS CPU-BLAS cuBLAS --platform %CLBLAST_PLATFORM% --device %CLBLAST_DEVICE%
+```
+
+因为我们一般采用了默认的方式进行了，所以在后继的命令中都使用明确的数字来进行超参的调优
+
+```bash
+$ python3 ../scripts/benchmark/benchmark_all.py --comparisons clBLAS CPU-BLAS cuBLAS --platform 0 --device 0
+```
+
 ## Windows
 
 ```bash
