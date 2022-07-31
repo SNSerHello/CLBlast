@@ -134,6 +134,22 @@ cblas
 
 #### 部分运行结果
 
+##### NVIDIA 2070平台 in Windows
+
+![NV2070 sgemv](images/nv3070_sgemv_plot.jpg)
+
+![NV2070 sgemm](images/nv3070_sgemm_plot.jpg)
+
+![NV2070 sgemmbatched](images/nv3070_sgemmbatched_plot.jpg)
+
+![NV2070 sgemmstridedbatched](images/nv3070_sgemmstridedbatched_plot.jpg)
+
+![NV2070 ssummary](images/nv3070_ssummary_plot.jpg)
+
+![NV2070 saxpybatched](images/nv3070_saxpy_plot.jpg)
+
+![NV2070 saxpybatched](images/nv3070_saxpybatched_plot.jpg)
+
 ##### NVIDIA 3070平台 in Ubuntu20.04LTS
 
 ![NV3070 sgemv](images/nv3070_sgemv_plot.jpg)
