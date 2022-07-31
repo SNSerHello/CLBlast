@@ -186,6 +186,37 @@ cblas
 
 将运行文件、头文件和库文件安装到dist目录下
 
+#### Windows
+
+```bash
+cmake -G "Visual Studio 15 2017 Win64" ^
+	-DBUILD_SHARED_LIBS=ON ^
+	-DTUNERS=OFF ^
+	-DCMAKE_INSTALL_PREFIX=../dist/clblast ..
+%comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 ALL_BUILD.vcxproj
+msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 INSTALL.vcxproj
+```
+
+##### 安装内容
+
+```bash
+clblast
+├── include
+│   ├── clblast.h
+│   ├── clblast_c.h
+│   └── clblast_half.h
+└── lib
+    ├── clblast.dll
+    ├── clblast.lib
+    └── cmake
+        └── CLBlast
+            ├── CLBlastConfig-release.cmake
+            └── CLBlastConfig.cmake
+```
+
+#### Ubuntu20.04LTS
+
 ```bash
 cmake -DCLIENTS=ON \
 	-DTESTS=ON \
@@ -198,7 +229,7 @@ make -j
 make install
 ```
 
-#### 安装内容
+##### 安装内容
 
 ```bash
 dist/clblast
@@ -526,6 +557,9 @@ make install
 - [BLAS (Basic Linear Algebra Subprograms)](https://netlib.org/blas/)
 - [LAPACK for Windows](https://icl.utk.edu/lapack-for-windows/lapack/index.html#libraries)
 - [Creating an Import Library](https://gcc.gnu.org/onlinedocs/gnat_ugn/Creating-an-Import-Library.html)
+- [oneAPI Math Kernel Library (oneMKL) Interfaces](https://github.com/oneapi-src/oneMKL)
+- [Intel(R) oneAPI Math Kernel Library for x86 CPU](https://software.intel.com/en-us/oneapi/onemkl)
+- [Intel(R) oneAPI Math Kernel Library for x86 CPU](https://software.intel.com/en-us/oneapi/onemkl)
 
 
 
