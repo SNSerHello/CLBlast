@@ -81,15 +81,17 @@ python3 ../scripts/benchmark/benchmark_all.py \
 #### Windows
 
 ```bash
+conda install mkl-devel intel-openmp
+cp ../prebuilt/intel-openmp/libiomp5md.lib %CONDA_PREFIX%/Library/lib/
+cp ../prebuilt/intel-openmp/libiomp5md.exp %CONDA_PREFIX%/Library/lib/
 cmake -G "Visual Studio 15 2017 Win64" ^
 	-DCLIENTS=ON ^
 	-DTESTS=ON ^
 	-DCUBLAS=ON ^
 	-DCUDA_ROOT=%CUDA_ROOT% ^
-	-DCBLAS_INCLUDE_DIRS=%CBLAS_ROOT% ^
+	-DMKL_ROOT=%CONDA_PREFIX%/Library ^
 	-DCBLAS_ROOT=%CBLAS_ROOT% ^
-	-DCBLAS_LIBRARIES=%CBLAS_ROOT%/lib/libcblas.lib ^
-	-DCMAKE_CXX_FLAGS="-I%CONDA_PREFIX%/include -I%CLBLAS_ROOT%/include -I%CBLAS_ROOT%/include" ..
+	-DCBLAS_LIBRARIES=%CBLAS_ROOT%/lib/libcblas.lib ..
 %comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 ALL_BUILD.vcxproj
 python3 ../scripts/benchmark/benchmark_all.py --comparisons clBLAS CPU-BLAS cuBLAS --platform 0 --device 0
@@ -129,6 +131,30 @@ cblas
 - `cblas_mangling.h`是修改`cblas_mangling_with_flags.h.in`的名字而获得的
 - `win32`文件夹中存放预编译的`x86`动态库，`x64`文件夹中存放预编译的`x64`动态库
 - `bin`与`lib`文件夹中放置当前使用的x86或者x64库，默认使用`x64`动态库
+
+
+
+##### 如何制作`libiomp5md.lib`?
+
+使用Anaconda安装的`intel-openmp`仅仅有`.dll`文件，没有对应的`.lib`文件，在链接的时候如果直接使用动态链接库，那么链接会失败，所以无奈必须手动制作`.lib`文件。
+
+```bash
+lib -machine:x64 -def:libiomp5md.def -out:libiomp5md.lib
+```
+
+**其中**
+
+- `libiomp5md.def`存放在`prebuilt/intel-openmp`目录中
+
+- `libiomp5md.dll`是从`%CONDA_PREFIX%/Library/bin`中拷贝而来的
+
+  ```bash
+  intel-openmp
+  ├── libiomp5md.def
+  ├── libiomp5md.dll
+  ├── libiomp5md.exp
+  └── libiomp5md.lib
+  ```
 
 
 
