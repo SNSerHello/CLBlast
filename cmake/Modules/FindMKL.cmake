@@ -53,11 +53,20 @@ set(MKL_LIB_SUFFIXES
   lib lib64 lib/x86_64 lib/x64 lib/x86 lib/Win32 lib/import lib64/import lib/intel64
   linux/compiler/lib/intel64
   windows/compiler/lib/intel64)
-find_library(MKL_LIBRARIES_LP64 NAMES mkl_intel_lp64 HINTS ${MKL_HINTS} PATH_SUFFIXES ${MKL_LIB_SUFFIXES} PATHS ${MKL_PATHS} DOC "Intel MKL lp64 library")
-find_library(MKL_LIBRARIES_THREAD NAMES mkl_intel_thread HINTS ${MKL_HINTS} PATH_SUFFIXES ${MKL_LIB_SUFFIXES} PATHS ${MKL_PATHS} DOC "Intel MKL thread library")
-find_library(MKL_LIBRARIES_CORE NAMES mkl_core HINTS ${MKL_HINTS} PATH_SUFFIXES ${MKL_LIB_SUFFIXES} PATHS ${MKL_PATHS} DOC "Intel MKL core library")
-find_library(MKL_LIBRARIES_OMP NAMES iomp5 libiomp5md HINTS ${MKL_HINTS} PATH_SUFFIXES ${MKL_LIB_SUFFIXES} PATHS ${MKL_PATHS} DOC "Intel OpenMP library")
-set(MKL_LIBRARIES ${MKL_LIBRARIES_LP64} ${MKL_LIBRARIES_THREAD} ${MKL_LIBRARIES_CORE} ${MKL_LIBRARIES_OMP})
+if(WIN32)
+  find_library(MKL_LIBRARIES_LP64 NAMES mkl_intel_lp64_dll HINTS ${MKL_HINTS} PATH_SUFFIXES ${MKL_LIB_SUFFIXES} PATHS ${MKL_PATHS} DOC "Intel MKL lp64 library")
+  find_library(MKL_LIBRARIES_THREAD NAMES mkl_intel_thread_dll HINTS ${MKL_HINTS} PATH_SUFFIXES ${MKL_LIB_SUFFIXES} PATHS ${MKL_PATHS} DOC "Intel MKL thread library")
+  find_library(MKL_LIBRARIES_CORE NAMES mkl_core_dll HINTS ${MKL_HINTS} PATH_SUFFIXES ${MKL_LIB_SUFFIXES} PATHS ${MKL_PATHS} DOC "Intel MKL core library")
+  find_library(MKL_LIBRARIES_RT NAMES mkl_core_dll HINTS ${MKL_HINTS} PATH_SUFFIXES ${MKL_LIB_SUFFIXES} PATHS ${MKL_PATHS} DOC "Intel MKL runtime library")
+  find_library(MKL_LIBRARIES_OMP NAMES iomp5 libiomp5md HINTS ${MKL_HINTS} PATH_SUFFIXES ${MKL_LIB_SUFFIXES} PATHS ${MKL_PATHS} DOC "Intel OpenMP library")
+  set(MKL_LIBRARIES ${MKL_LIBRARIES_LP64} ${MKL_LIBRARIES_THREAD} ${MKL_LIBRARIES_CORE} ${MKL_LIBRARIES_RT} ${MKL_LIBRARIES_OMP})
+else()
+  find_library(MKL_LIBRARIES_LP64 NAMES mkl_intel_lp64 HINTS ${MKL_HINTS} PATH_SUFFIXES ${MKL_LIB_SUFFIXES} PATHS ${MKL_PATHS} DOC "Intel MKL lp64 library")
+  find_library(MKL_LIBRARIES_THREAD NAMES mkl_intel_thread HINTS ${MKL_HINTS} PATH_SUFFIXES ${MKL_LIB_SUFFIXES} PATHS ${MKL_PATHS} DOC "Intel MKL thread library")
+  find_library(MKL_LIBRARIES_CORE NAMES mkl_core HINTS ${MKL_HINTS} PATH_SUFFIXES ${MKL_LIB_SUFFIXES} PATHS ${MKL_PATHS} DOC "Intel MKL core library")
+  find_library(MKL_LIBRARIES_OMP NAMES iomp5 libiomp5md HINTS ${MKL_HINTS} PATH_SUFFIXES ${MKL_LIB_SUFFIXES} PATHS ${MKL_PATHS} DOC "Intel OpenMP library")
+  set(MKL_LIBRARIES ${MKL_LIBRARIES_LP64} ${MKL_LIBRARIES_THREAD} ${MKL_LIBRARIES_CORE} ${MKL_LIBRARIES_OMP})
+endif()
 mark_as_advanced(MKL_LIBRARIES)
 
 # ==================================================================================================

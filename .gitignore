@@ -9,3 +9,4 @@ opencl.hpp
 src/pyclblast/dist
 *.egg-info
 dist*
+build*
