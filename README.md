@@ -43,8 +43,8 @@ $ python3 ../scripts/benchmark/benchmark_all.py --comparisons clBLAS CPU-BLAS cu
 mkdir build
 cd build
 cmake -G "Visual Studio 15 2017 Win64" ^
-	-DTUNERS=ON ^
-	-DCMAKE_INSTALL_PREFIX=../dist/clblast ..
+    -DTUNERS=ON ^
+    -DCMAKE_INSTALL_PREFIX=../dist/clblast ..
 %comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 clblast.vcxproj
 msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 alltuners.vcxproj
