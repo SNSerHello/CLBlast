@@ -102,16 +102,16 @@ cmake -DTUNERS=ON ..
 ```bash
 sudo apt install libmkl-full-dev libclblas-dev
 cmake -DCLIENTS=ON \
-	-DTESTS=ON \
-	-DMKL_INCLUDE_DIRS=/usr/include/mkl \
-	-DCUBLAS=ON \
-	-DCUDA_ROOT=$CONDA_PREFIX \
-	-DCMAKE_CXX_FLAGS=-I$CONDA_PREFIX/include ..
+    -DTESTS=ON \
+    -DMKL_INCLUDE_DIRS=/usr/include/mkl \
+    -DCUBLAS=ON \
+    -DCUDA_ROOT=$CONDA_PREFIX \
+    -DCMAKE_CXX_FLAGS=-I$CONDA_PREFIX/include ..
 make -j
 python3 ../scripts/benchmark/benchmark_all.py \
-	--comparisons clBLAS CPU-BLAS cuBLAS  \
-	--platform 0 \
-	--device 0
+    --comparisons clBLAS CPU-BLAS cuBLAS  \
+    --platform 0 \
+    --device 0
 ```
 
 **注意**：如果没有CUDA或者MKL安装，那么在命令行中删除对应部分即可。
@@ -123,13 +123,12 @@ conda install mkl-devel intel-openmp
 cp ../prebuilt/intel-openmp/libiomp5md.lib %CONDA_PREFIX%/Library/lib/
 cp ../prebuilt/intel-openmp/libiomp5md.exp %CONDA_PREFIX%/Library/lib/
 cmake -G "Visual Studio 15 2017 Win64" ^
-	-DCLIENTS=ON ^
-	-DTESTS=ON ^
-	-DCUBLAS=ON ^
-	-DCUDA_ROOT=%CUDA_ROOT% ^
-	-DMKL_ROOT=%CONDA_PREFIX%/Library ^
-	-DCBLAS_ROOT=%CBLAS_ROOT% ^
-	-DCBLAS_LIBRARIES=%CBLAS_ROOT%/lib/libcblas.lib ..
+    -DCLIENTS=ON ^
+    -DTESTS=ON ^
+    -DCUBLAS=ON ^
+    -DCUDA_ROOT=%CUDA_ROOT% ^
+    -DMKL_ROOT=%CONDA_PREFIX%/Library ^
+    -DCBLAS_ROOT=%CBLAS_ROOT% ..
 %comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 ALL_BUILD.vcxproj
 python3 ../scripts/benchmark/benchmark_all.py --comparisons clBLAS CPU-BLAS cuBLAS --platform 0 --device 0
@@ -254,9 +253,9 @@ lib -machine:x64 -def:libiomp5md.def -out:libiomp5md.lib
 
 ```bash
 cmake -G "Visual Studio 15 2017 Win64" ^
-	-DBUILD_SHARED_LIBS=ON ^
-	-DTUNERS=OFF ^
-	-DCMAKE_INSTALL_PREFIX=../dist/clblast ..
+    -DBUILD_SHARED_LIBS=ON ^
+    -DTUNERS=OFF ^
+    -DCMAKE_INSTALL_PREFIX=../dist/clblast ..
 %comspec% /k "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 ALL_BUILD.vcxproj
 msbuild /maxcpucount:4 /p:Configuration=Release /p:PreferredToolArchitecture=x64 INSTALL.vcxproj
