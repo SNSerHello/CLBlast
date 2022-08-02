@@ -72,6 +72,8 @@ make
 make alltuners
 python ../scripts/database/database.py -v . ..
 # 使用新数据编译CLBlast
+rm -rf *
+cmake .. -DTUNERS=OFF -DCMAKE_INSTALL_PREFIX=../dist/clblast
 make
 make install
 ```
