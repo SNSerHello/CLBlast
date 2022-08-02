@@ -163,8 +163,9 @@ const DatabaseEntry XgemmDouble = {
           { kDeviceNameDefault                                        , Params{ 0, 1, 32, 2, 32, 32, 64, 8, 8, 32, 1, 1, 0, 0, 2, 2 } },
         } },
         { "SM8.6", {
+          { Name{"NVIDIA GeForce RTX 3070                           "}, Params{ 0, 1, 16, 2, 8, 8, 16, 8, 16, 32, 0, 1, 0, 1, 1, 2 } },
           { Name{"NVIDIA GeForce RTX 3090 Ti                        "}, Params{ 0, 1, 32, 2, 16, 16, 16, 8, 8, 16, 1, 1, 0, 0, 1, 2 } },
-          { kDeviceNameDefault                                        , Params{ 0, 1, 32, 2, 16, 16, 16, 8, 8, 16, 1, 1, 0, 0, 1, 2 } },
+          { kDeviceNameDefault                                        , Params{ 0, 1, 16, 2, 8, 8, 16, 8, 16, 32, 0, 1, 0, 1, 1, 2 } },
         } },
         { "default", {
           { kDeviceNameDefault                                        , Params{ 0, 1, 32, 2, 32, 32, 64, 8, 8, 32, 1, 1, 0, 0, 2, 2 } },
