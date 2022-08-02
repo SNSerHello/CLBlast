@@ -283,13 +283,8 @@ clblast
 #### Ubuntu20.04LTS
 
 ```bash
-cmake -DCLIENTS=ON \
-	-DTESTS=ON \
-	-DMKL_INCLUDE_DIRS=/usr/include/mkl \
-	-DCUBLAS=ON \
-	-DCUDA_ROOT=$CONDA_PREFIX \
-	-DCMAKE_CXX_FLAGS=-I$CONDA_PREFIX/include \
-	-DCMAKE_INSTALL_PREFIX=../dist/clblast ..
+rm -rf *
+cmake .. -DTUNERS=OFF -DCMAKE_INSTALL_PREFIX=../dist/clblast
 make -j
 make install
 ```
@@ -298,121 +293,6 @@ make install
 
 ```bash
 dist/clblast
-├── bin
-│   ├── clblast_client_xamax
-│   ├── clblast_client_xasum
-│   ├── clblast_client_xaxpy
-│   ├── clblast_client_xaxpybatched
-│   ├── clblast_client_xcol2im
-│   ├── clblast_client_xconvgemm
-│   ├── clblast_client_xcopy
-│   ├── clblast_client_xdot
-│   ├── clblast_client_xdotc
-│   ├── clblast_client_xdotu
-│   ├── clblast_client_xgbmv
-│   ├── clblast_client_xgemm
-│   ├── clblast_client_xgemmbatched
-│   ├── clblast_client_xgemmstridedbatched
-│   ├── clblast_client_xgemv
-│   ├── clblast_client_xger
-│   ├── clblast_client_xgerc
-│   ├── clblast_client_xgeru
-│   ├── clblast_client_xhad
-│   ├── clblast_client_xhbmv
-│   ├── clblast_client_xhemm
-│   ├── clblast_client_xhemv
-│   ├── clblast_client_xher
-│   ├── clblast_client_xher2
-│   ├── clblast_client_xher2k
-│   ├── clblast_client_xherk
-│   ├── clblast_client_xhpmv
-│   ├── clblast_client_xhpr
-│   ├── clblast_client_xhpr2
-│   ├── clblast_client_xim2col
-│   ├── clblast_client_xnrm2
-│   ├── clblast_client_xomatcopy
-│   ├── clblast_client_xsbmv
-│   ├── clblast_client_xscal
-│   ├── clblast_client_xspmv
-│   ├── clblast_client_xspr
-│   ├── clblast_client_xspr2
-│   ├── clblast_client_xswap
-│   ├── clblast_client_xsymm
-│   ├── clblast_client_xsymv
-│   ├── clblast_client_xsyr
-│   ├── clblast_client_xsyr2
-│   ├── clblast_client_xsyr2k
-│   ├── clblast_client_xsyrk
-│   ├── clblast_client_xtbmv
-│   ├── clblast_client_xtpmv
-│   ├── clblast_client_xtrmm
-│   ├── clblast_client_xtrmv
-│   ├── clblast_client_xtrsm
-│   ├── clblast_client_xtrsv
-│   ├── clblast_test_xamax
-│   ├── clblast_test_xasum
-│   ├── clblast_test_xaxpy
-│   ├── clblast_test_xaxpybatched
-│   ├── clblast_test_xcol2im
-│   ├── clblast_test_xconvgemm
-│   ├── clblast_test_xcopy
-│   ├── clblast_test_xdot
-│   ├── clblast_test_xdotc
-│   ├── clblast_test_xdotu
-│   ├── clblast_test_xgbmv
-│   ├── clblast_test_xgemm
-│   ├── clblast_test_xgemmbatched
-│   ├── clblast_test_xgemmstridedbatched
-│   ├── clblast_test_xgemv
-│   ├── clblast_test_xger
-│   ├── clblast_test_xgerc
-│   ├── clblast_test_xgeru
-│   ├── clblast_test_xhad
-│   ├── clblast_test_xhbmv
-│   ├── clblast_test_xhemm
-│   ├── clblast_test_xhemv
-│   ├── clblast_test_xher
-│   ├── clblast_test_xher2
-│   ├── clblast_test_xher2k
-│   ├── clblast_test_xherk
-│   ├── clblast_test_xhpmv
-│   ├── clblast_test_xhpr
-│   ├── clblast_test_xhpr2
-│   ├── clblast_test_xim2col
-│   ├── clblast_test_xnrm2
-│   ├── clblast_test_xomatcopy
-│   ├── clblast_test_xsbmv
-│   ├── clblast_test_xscal
-│   ├── clblast_test_xspmv
-│   ├── clblast_test_xspr
-│   ├── clblast_test_xspr2
-│   ├── clblast_test_xswap
-│   ├── clblast_test_xsymm
-│   ├── clblast_test_xsymv
-│   ├── clblast_test_xsyr
-│   ├── clblast_test_xsyr2
-│   ├── clblast_test_xsyr2k
-│   ├── clblast_test_xsyrk
-│   ├── clblast_test_xtbmv
-│   ├── clblast_test_xtpmv
-│   ├── clblast_test_xtrmm
-│   ├── clblast_test_xtrmv
-│   ├── clblast_test_xtrsm
-│   ├── clblast_test_xtrsv
-│   ├── clblast_tuner_copy_fast
-│   ├── clblast_tuner_copy_pad
-│   ├── clblast_tuner_invert
-│   ├── clblast_tuner_routine_xgemm
-│   ├── clblast_tuner_routine_xtrsv
-│   ├── clblast_tuner_transpose_fast
-│   ├── clblast_tuner_transpose_pad
-│   ├── clblast_tuner_xaxpy
-│   ├── clblast_tuner_xconvgemm
-│   ├── clblast_tuner_xdot
-│   ├── clblast_tuner_xgemm
-│   ├── clblast_tuner_xgemm_direct
-│   ├── clblast_tuner_xgemv
-│   └── clblast_tuner_xger
 ├── include
 │   ├── clblast_c.h
 │   ├── clblast.h
@@ -429,7 +309,7 @@ dist/clblast
         └── clblast.pc
 ```
 
-可以使用这些安装的可执行文件进行finetuning操作，比如
+如果要安装tuning程序，需要在编译的时候将`-DTUNERS=OFF`打开，然后可进行finetuning操作，比如
 
 ```bash
 $ ../dist/clblast/bin/clblast_tuner_xdot -precision 32
