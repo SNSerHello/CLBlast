@@ -59,6 +59,8 @@ def run_binary(command, arguments):
 
 def parse_results(csv_data):
     csv_data = csv_data.split("\n")
+    if "Kernel Cache limit" in csv_data[0]:
+        csv_data = csv_data[1:]
     results = csv.DictReader(csv_data, delimiter=";", skipinitialspace=True)
     results = [r for r in results]
     for result in results:
